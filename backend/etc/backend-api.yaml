@@ -1,0 +1,14 @@
+Name: backend-api
+Host: 0.0.0.0
+Port: 11201
+Cors:
+  allowedOrigins:
+    - "*"
+  allowedMethods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+  allowedHeaders:
+    - Content-Type
+    - Authorization

@@ -1,0 +1,33 @@
+type Request {
+	Name string `path:"name,options=you|me"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+type FilesRequest {
+	Path string `form:"path"`
+}
+
+type FilesResponse {
+	Files []FileInfo `json:"files"`
+}
+
+type FileInfo {
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Size        int64  `json:"size"`
+	Modified    int64  `json:"modified"`
+	Permissions string `json:"permissions"`
+	Path        string `json:"path"`
+}
+
+service backend-api {
+	@handler BackendHandler
+	get /from/:name(Request) returns (Response)
+	
+	@handler FilesHandler
+	get /api/files(FilesRequest) returns (FilesResponse)
+}
