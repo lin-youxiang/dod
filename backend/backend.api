@@ -1,33 +1,18 @@
-type Request {
-	Name string `path:"name,options=you|me"`
-}
+type (
+	TMDBBySearchEngineRequst {
+		Query string `form:"query"`
+	}
+	TMDBBySearchEngineResponse {
+		name string `json:"name"`
+	}
+)
 
-type Response {
-	Message string `json:"message"`
-}
-
-type FilesRequest {
-	Path string `form:"path"`
-}
-
-type FilesResponse {
-	Files []FileInfo `json:"files"`
-}
-
-type FileInfo {
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Type        string `json:"type"`
-	Size        int64  `json:"size"`
-	Modified    int64  `json:"modified"`
-	Permissions string `json:"permissions"`
-	Path        string `json:"path"`
-}
-
+@server (
+	prifix: /api/tmdb
+	group:  api/tmdb
+)
 service backend-api {
-	@handler BackendHandler
-	get /from/:name(Request) returns (Response)
-	
-	@handler FilesHandler
-	get /api/files(FilesRequest) returns (FilesResponse)
+	@handler SearchEngine
+	get /searchengine (TMDBBySearchEngineRequst) returns (TMDBBySearchEngineResponse)
 }
+
