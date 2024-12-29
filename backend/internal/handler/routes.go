@@ -21,5 +21,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: apitmdb.SearchEngineHandler(serverCtx),
 			},
 		},
+		rest.WithPrefix("/api/tmdb"),
 	)
 }

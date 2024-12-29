@@ -8,7 +8,7 @@ type (
 )
 
 @server (
-	prifix: /api/tmdb
+	prefix: /api/tmdb
 	group:  api/tmdb
 )
 service backend-api {
